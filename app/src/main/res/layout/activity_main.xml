@@ -12,6 +12,8 @@
         android:layout_height="300dp"
         app:cardElevation="10dp"
         android:layout_marginTop="36dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -67,13 +69,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="76dp"
+                android:layout_marginTop="48dp"
                 android:backgroundTint="@color/white"
                 android:text="ADD"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 app:cornerRadius="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="@+id/layout2"
                 app:layout_constraintTop_toBottomOf="@+id/layout2"
                 app:strokeColor="#FFEB3B"
@@ -89,8 +91,10 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="400dp"
         app:cardElevation="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -99,7 +103,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/lits_item"/>
+            tools:listitem="@layout/lits_item" />
 
     </androidx.cardview.widget.CardView>
 
