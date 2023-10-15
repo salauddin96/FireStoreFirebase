@@ -4,32 +4,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#AFABAB"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginStart="10dp"
+        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_height="match_parent">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout1"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:hint="Enter Title"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
+                app:boxStrokeColor="#00BCD4"
+                app:boxStrokeWidthFocused="2dp"
+                app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -42,62 +50,68 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout2"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:hint="Enter Description..."
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:hint="Enter Description"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/layout1"
-                app:layout_constraintTop_toBottomOf="@+id/layout1">
+                app:layout_constraintHorizontal_bias="0.833"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout1"
+                app:layout_constraintVertical_bias="0.04">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEdes"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent"
+                    android:inputType="textMultiLine" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <Button
                 android:id="@+id/addBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="48dp"
+                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
                 android:text="ADD"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:cornerRadius="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/layout2"
-                app:layout_constraintTop_toBottomOf="@+id/layout2"
-                app:strokeColor="#FFEB3B"
-                app:strokeWidth="2dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeColor="#00BCD4"
+                app:strokeWidth="1dp" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:layout_marginBottom="10dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
