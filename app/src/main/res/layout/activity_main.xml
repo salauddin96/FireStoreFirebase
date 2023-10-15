@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#AFABAB"
+    android:background="#DA9836"
     tools:context=".MainActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="400dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         app:cardCornerRadius="15dp"
@@ -22,16 +22,31 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#040923"
             android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:layout_height="match_parent">
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/writeTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="30dp"
+                android:text="Create your note..."
+                android:textSize="18sp"
+                android:textStyle="italic"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/layout1"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="4dp"
                 android:hint="Enter Title"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
@@ -40,12 +55,14 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/writeTxt">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEtxt"
+                    android:lines="1"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -55,21 +72,19 @@
                 android:id="@+id/layout2"
                 style="@style/Widget.Material3.CardView.Outlined"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="4dp"
                 android:hint="Enter Description..."
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 app:endIconMode="clear_text"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.833"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layout1"
-                app:layout_constraintVertical_bias="0.04">
+                app:layout_constraintTop_toBottomOf="@+id/layout1">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEdes"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textMultiLine" />
@@ -82,7 +97,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
                 android:backgroundTint="@color/white"
                 android:text="ADD"
                 android:textColor="@color/black"
@@ -91,6 +105,8 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout2"
+                app:layout_constraintVertical_bias="0.111"
                 app:strokeColor="#00BCD4"
                 app:strokeWidth="1dp" />
 
@@ -107,7 +123,7 @@
         android:layout_margin="10dp"
         android:layout_marginBottom="10dp"
         app:cardCornerRadius="15dp"
-        app:cardElevation="10dp"
+        app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
