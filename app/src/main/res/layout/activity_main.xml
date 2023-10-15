@@ -11,11 +11,11 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
+        android:layout_margin="10dp"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
-        android:layout_margin="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,10 +33,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:paddingLeft="30dp"
-                android:text="Create your note..."
+                android:text="Create your note here..."
+                android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="italic"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -59,10 +59,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEtxt"
-                    android:lines="1"
-                    android:textColor="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"
+                    android:lines="1"
+                    android:textColor="@color/white" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,10 +84,10 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/enterEdes"
-                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"
+                    android:textColor="@color/white" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -116,25 +116,32 @@
 
     </androidx.cardview.widget.CardView>
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="10dp"
         android:layout_marginBottom="10dp"
+        android:backgroundTint="#C3C8C8"
         app:cardCornerRadius="15dp"
         app:cardElevation="15dp"
-        android:backgroundTint="#C3C8C8"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
             tools:listitem="@layout/lits_item" />
+
 
     </androidx.cardview.widget.CardView>
 

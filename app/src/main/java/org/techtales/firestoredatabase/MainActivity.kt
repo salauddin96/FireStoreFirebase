@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
             }
             else{
                 Toast.makeText(this@MainActivity, "Title and Description are required", Toast.LENGTH_SHORT).show()
-                goToMainActivity()
+
 
             }
         }
