@@ -3,13 +3,17 @@ package org.techtales.firestoredatabase
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import org.techtales.firestoredatabase.databinding.ActivityMainBinding
 
+@Suppress("OVERRIDE_DEPRECATION")
 class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
+    private var doubleBackToExitPressedOnce = false
     private lateinit var binding: ActivityMainBinding
     private val db = FirebaseFirestore.getInstance()
     private val dataCollection = db.collection("data")
@@ -69,6 +73,26 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
             }
     }
 
+
+
+
+    override fun onBackPressed() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            finish() // Finish the app when back is pressed twice
+            return
+        }
+
+        this.doubleBackToExitPressedOnce= true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({
+            doubleBackToExitPressedOnce = false
+        }, 1000) // Reset the flag after 1 seconds
+    }
+
+
     override fun onEditClick(data: Data) {
         binding.enterEtxt.setText(data.title)
         binding.enterEdes.setText(data.description)
@@ -86,14 +110,32 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
                     .addOnSuccessListener {
                         binding.enterEtxt.text?.clear()
                         binding.enterEdes.text?.clear()
-                        startActivity(Intent(this@MainActivity, MainActivity::class.java))
+
                         Toast.makeText(this, "Data Updated", Toast.LENGTH_SHORT).show()
+                        fetchData()
+
+                        goToMainActivity()
+
+
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, "Data Updated Failed", Toast.LENGTH_SHORT).show()
                     }
+
+            }
+            else{
+                Toast.makeText(this@MainActivity, "Title and Description are required", Toast.LENGTH_SHORT).show()
+                goToMainActivity()
+
             }
         }
+    }
+
+    private fun goToMainActivity() {
+        // Navigate to MainActivity
+        val intent = Intent(this@MainActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish() // Finish the current activity to provide back button navigation
     }
 
 
@@ -113,11 +155,11 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
             }
 
             dialog.setNegativeButton("NO"){dialogInterface, which->
-                Toast.makeText(this, "Click No", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Clicked No", Toast.LENGTH_SHORT).show()
             }
 
             dialog.setNeutralButton("CANCEL"){dialogInterface, which->
-                Toast.makeText(this, "Click Cancel", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Clicked Cancel", Toast.LENGTH_SHORT).show()
             }
 
             val alertDialog:AlertDialog = dialog.create()
