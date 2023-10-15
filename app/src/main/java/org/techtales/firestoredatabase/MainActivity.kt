@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.FirebaseFirestore
 import org.techtales.firestoredatabase.databinding.ActivityMainBinding
@@ -70,7 +71,7 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
 
     override fun onEditClick(data: Data) {
         binding.enterEtxt.setText(data.title)
-        binding.enterEtxt.setText(data.description)
+        binding.enterEdes.setText(data.description)
         binding.addBtn.text = "Update"
 
         binding.addBtn.setOnClickListener {
@@ -97,16 +98,33 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
 
 
         override fun onDeleteItemClick(data: Data) {
-            dataCollection.document(data.id!!)
-                .delete()
-                .addOnSuccessListener {
-                    adapter.notifyDataSetChanged()
-                    Toast.makeText(this, "Data deleted", Toast.LENGTH_SHORT).show()
-                    fetchData()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Data deleted failed", Toast.LENGTH_SHORT).show()
-                }
+            val dialog = AlertDialog.Builder(this)
+            dialog.setTitle("Delete Files")
+            dialog.setMessage("Do you want to delete files?")
+            dialog.setIcon(R.drawable.delete)
+
+
+
+            dialog.setPositiveButton("YES"){dialogInterface, which->
+                dataCollection.document(data.id!!)
+                    .delete()
+                Toast.makeText(this, "Deleted", Toast.LENGTH_SHORT).show()
+                fetchData()
+            }
+
+            dialog.setNegativeButton("NO"){dialogInterface, which->
+                Toast.makeText(this, "Click No", Toast.LENGTH_SHORT).show()
+            }
+
+            dialog.setNeutralButton("CANCEL"){dialogInterface, which->
+                Toast.makeText(this, "Click Cancel", Toast.LENGTH_SHORT).show()
+            }
+
+            val alertDialog:AlertDialog = dialog.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+
+
 
         }
 
