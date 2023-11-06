@@ -1,17 +1,18 @@
 package org.techtales.firestoredatabase
 
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import org.techtales.firestoredatabase.databinding.ActivityMainBinding
 
-@Suppress("OVERRIDE_DEPRECATION")
+
 class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
     private var doubleBackToExitPressedOnce = false
     private lateinit var binding: ActivityMainBinding
@@ -28,9 +29,12 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
         binding.recyclerView.adapter = adapter
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
+
+
+
         binding.addBtn.setOnClickListener {
-            val title = binding.enterEtxt.text.toString()
-            val description = binding.enterEdes.text.toString()
+            val title = binding.titleEtxt.text.toString()
+            val description = binding.descEtxt.text.toString()
 
             if (title.isNotEmpty() && description.isNotEmpty()) {
                 addData(title, description)
@@ -57,16 +61,16 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
     }
 
     private fun addData(title: String, description: String) {
-        val newData = Data(title = title, description = description)
+        val newData = Data(title = title, description = description, timestamp = Timestamp.now())
         dataCollection.add(newData)
             .addOnSuccessListener {
                 newData.id = it.id
                 data.add(newData)
                 adapter.notifyDataSetChanged()
                 Toast.makeText(this, "Data added Successfully", Toast.LENGTH_SHORT).show()
-
-                binding.enterEtxt.text?.clear()
-                binding.enterEdes.text?.clear()
+                fetchData()
+                binding.titleEtxt.text?.clear()
+                binding.descEtxt.text?.clear()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Data added Failed", Toast.LENGTH_SHORT).show()
@@ -94,22 +98,22 @@ class MainActivity : AppCompatActivity(), DataAdapter.ItemClickListener {
 
 
     override fun onEditClick(data: Data) {
-        binding.enterEtxt.setText(data.title)
-        binding.enterEdes.setText(data.description)
+        binding.titleEtxt.setText(data.title)
+        binding.descEtxt.setText(data.description)
         binding.addBtn.text = "Update"
 
         binding.addBtn.setOnClickListener {
-            val updateTitle = binding.enterEtxt.text.toString()
-            val updateDescription = binding.enterEdes.text.toString()
+            val updateTitle = binding.titleEtxt.text.toString()
+            val updateDescription = binding.descEtxt.text.toString()
 
             if (updateTitle.isNotEmpty() && updateDescription.isNotEmpty()) {
-                val updateData = Data(data.id, updateTitle, updateDescription)
+                val updateData = Data(data.id, updateTitle, updateDescription, Timestamp.now())
 
                 dataCollection.document(data.id!!)
                     .set(updateData)
                     .addOnSuccessListener {
-                        binding.enterEtxt.text?.clear()
-                        binding.enterEdes.text?.clear()
+                        binding.titleEtxt.text?.clear()
+                        binding.descEtxt.text?.clear()
 
                         Toast.makeText(this, "Data Updated", Toast.LENGTH_SHORT).show()
                         fetchData()

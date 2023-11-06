@@ -18,13 +18,13 @@ class DataAdapter(private val data:List<Data>, private val itemClickListener: It
 
     class ViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.titleTxt)
-        val description = itemView.findViewById<TextView>(R.id.desTxt)
+        val description = itemView.findViewById<TextView>(R.id.descTxt)
         val edit = itemView.findViewById<ImageButton>(R.id.editBtn)
         val delete = itemView.findViewById<ImageButton>(R.id.deleteBtn)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.lits_item,parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.lits_rv_item,parent, false)
         return ViewHolder(view)
     }
 
